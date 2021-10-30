@@ -25,7 +25,7 @@ export default function Login() {
         response.data.ongToken.token
       );
 
-      history.push("/occ");
+      history.push("/profile");
     } catch (err) {
       alert("Falha ao Logar", err);
     }

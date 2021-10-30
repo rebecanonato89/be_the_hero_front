@@ -1,8 +1,9 @@
 import React from "react";
 import { Route, Switch, BrowserRouter  } from "react-router-dom";
 import Login from "./pages/Login";
-import Occurrences from "./pages/Occurrences";
+import Profile from "./pages/Profile";
 import Register from "./pages/Register";
+import NewIncident from './pages/NewIncident'
 
 export default function Routes(){
     return (
@@ -10,7 +11,8 @@ export default function Routes(){
             <Switch>
                 <Route path='/' exact component={Login} />
                 <Route path='/register' exact component={Register} />
-                <Route path='/occ' exact component={Occurrences} />
+                <Route path='/profile' exact component={Profile} />
+                <Route path="/incidents/new" component={NewIncident} />
             </Switch>
         </BrowserRouter>
     )
