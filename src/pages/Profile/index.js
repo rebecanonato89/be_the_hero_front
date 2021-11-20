@@ -8,33 +8,31 @@ import './style.css';
 import logoImg from '../../assets/logo.svg';
 
 export default function Profile() {
-  const [incidents, setIncidets] = useState([]);
+  const [incidents, setIncidents] = useState([]);
   const history = useHistory();
 
-  const ongId = localStorage.getItem('#be_the_hero:ongId');
   const ongName = localStorage.getItem('#be_the_hero:ongName');
+  const ongToken = localStorage.getItem('#be_the_hero:ongToken');
 
-  // useEffect, param[0], {} o que executar
-  // useEffect, param[1], [] quando o que mudar deve executar
   useEffect(() => {
-    api.get('profile', {
+    api.get('incidents', {
       headers: {
-        Authorization: ongId,
+        Authorization: `Bearer ${ongToken}`,
       }
     }).then(response => {
-      setIncidets(response.data);
-    })
-  }, [ongId]);
+      setIncidents(response.data.incidents);
+    });
+  }, []);
 
   async function handleDeleteIncident(id) {
     try {
       await api.delete(`incidents/${id}`, {
         headers: {
-          Authorization: ongId,
+          Authorization: `Bearer ${ongToken}`,
         }
       });
 
-      setIncidets(incidents.filter(incident => incident.id !== id));
+      setIncidents(incidents.filter(incident => incident.id !== id));
 
     } catch (err) {
       alert('Erro ao deletar caso, tente novamente');
